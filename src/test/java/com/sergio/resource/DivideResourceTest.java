@@ -1,5 +1,6 @@
 package com.sergio.resource;
 
+import com.sergio.common.Constants;
 import io.quarkus.test.junit.QuarkusTest;
 import lombok.NoArgsConstructor;
 import org.junit.jupiter.api.Test;
@@ -25,7 +26,7 @@ class DivideResourceTest {
                 .get("/divide/9/3")
                 .then()
                 .statusCode(200)
-                .body(is("3.00000"));
+                .body(is(BigDecimal.valueOf(3).setScale(Constants.DEFAULT_NUMBER_OF_DECIMALS, Constants.DEFAULT_ROUNDING_MODE).toString()));
     }
 
     @ParameterizedTest
@@ -36,7 +37,7 @@ class DivideResourceTest {
                 .get("/divide/" + dividend + "/" + divisor)
                 .then()
                 .statusCode(200)
-                .body(is(BigDecimal.valueOf(result).setScale(5, RoundingMode.HALF_UP).toString()));
+                .body(is(BigDecimal.valueOf(result).setScale(Constants.DEFAULT_NUMBER_OF_DECIMALS, Constants.DEFAULT_ROUNDING_MODE).toString()));
     }
 
     @NoArgsConstructor
@@ -45,15 +46,13 @@ class DivideResourceTest {
         @Override
         public Stream<? extends Arguments> provideArguments(ExtensionContext context) {
             return Stream.of(
-                    Arguments.of(9, 3, 3.00000),
-                    Arguments.of(10, 2, 5.00000),
-                    Arguments.of(10, 3, 3.33333),
-                    Arguments.of(10, -3, -3.33333),
-                    Arguments.of(-10, 3, -3.33333),
-                    Arguments.of(-10, -3, 3.33333)
+                    Arguments.of(9, 3, 3),
+                    Arguments.of(10, 2, 5),
+                    Arguments.of(10, 3, 3.333333333333),
+                    Arguments.of(10, -3, -3.333333333333),
+                    Arguments.of(-10, 3, -3.333333333333),
+                    Arguments.of(-10, -3, 3.333333333333)
             );
         }
-
-
     }
 }
