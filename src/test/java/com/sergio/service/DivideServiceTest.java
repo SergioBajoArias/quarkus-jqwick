@@ -33,9 +33,6 @@ class DivideServiceTest {
         BigDecimal result = divideService.divide(dividend, divisor);
         BigDecimal difference = BigDecimal.valueOf(dividend).subtract(BigDecimal.valueOf(divisor).multiply(result));
         BigDecimal tolerance = BigDecimal.valueOf(0.001);
-        if(difference.compareTo(tolerance) == -1) {
-            log.info("test");
-        }
         assertTrue(List.of(-1, 0).contains(difference.compareTo(tolerance)));
     }
 

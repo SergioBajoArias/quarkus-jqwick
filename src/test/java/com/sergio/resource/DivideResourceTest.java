@@ -22,9 +22,9 @@ class DivideResourceTest {
     @Test
     void testDivide() {
         given()
-                .when()
+            .when()
                 .get("/divide/9/3")
-                .then()
+            .then()
                 .statusCode(200)
                 .body(is(BigDecimal.valueOf(3).setScale(Constants.DEFAULT_NUMBER_OF_DECIMALS, Constants.DEFAULT_ROUNDING_MODE).toString()));
     }

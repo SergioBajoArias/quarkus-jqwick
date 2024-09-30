@@ -16,6 +16,7 @@
         <skipITs>true</skipITs>
         <surefire-plugin.version>3.3.1</surefire-plugin.version>
         <jqwick.version>1.9.0</jqwick.version>
+        <quicktheories.version>0.26</quicktheories.version>
         <lombok.version>1.18.34</lombok.version>
     </properties>
 
@@ -65,6 +66,13 @@
             <version>${jqwick.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.quicktheories</groupId>
+            <artifactId>quicktheories</artifactId>
+            <version>${quicktheories.version}</version>
+            <scope>test</scope>
+        </dependency>
+
     </dependencies>
 
     <build>
