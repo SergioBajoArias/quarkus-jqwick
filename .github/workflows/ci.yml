@@ -20,4 +20,4 @@ jobs:
           distribution: temurin
           cache: maven
       - name: Build
-        run: ./mvnw verify -B
+        run: ./mvnw clean verify -Dnative -DDocker -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -Dquarkus.platform.version=3.14.4 -B
