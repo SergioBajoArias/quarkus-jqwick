@@ -15,7 +15,7 @@ import static org.quicktheories.QuickTheory.qt;
 import static org.quicktheories.generators.SourceDSL.integers;
 
 @QuarkusTest
-class DivideResourcePBTest {
+class DivideResourcePBT_Test {
 
     @TestHTTPResource("/")
     URL baseURL;

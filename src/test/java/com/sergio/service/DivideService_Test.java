@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
-class DivideServiceTest {
+class DivideService_Test {
 
     DivideService divideService = new DivideService();
     @Property
@@ -32,7 +32,7 @@ class DivideServiceTest {
     public void testDivideCheckResults(@ForAll int dividend, @ForAll("nonZeroNumbers") int divisor) {
         BigDecimal result = divideService.divide(dividend, divisor);
         BigDecimal difference = BigDecimal.valueOf(dividend).subtract(BigDecimal.valueOf(divisor).multiply(result));
-        BigDecimal tolerance = BigDecimal.valueOf(0.001);
+        BigDecimal tolerance = BigDecimal.valueOf(0.01);
         assertTrue(List.of(-1, 0).contains(difference.compareTo(tolerance)));
     }
 

@@ -3,8 +3,6 @@ package com.sergio.service;
 import lombok.extern.slf4j.Slf4j;
 import net.jqwik.api.*;
 
-import java.math.BigDecimal;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.Collections;
@@ -15,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
-class ReverseServiceTest {
+class ReverseService_Test {
 
     ReverseService reverseService = new ReverseService();
 

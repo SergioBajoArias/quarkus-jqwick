@@ -53,6 +53,12 @@ You can then execute your native executable with: `./target/quarkus-jqwick-1.0.0
 
 If you want to learn more about building native executables, please consult <https://quarkus.io/guides/maven-tooling>.
 
+In order to run all the tests:
+
+```shell script
+mvn clean verify -Dnative -DDocker -Dquarkus.native.container-build=true -Dquarkus.container-image.build=true -Dquarkus.platform.version=3.14.4
+```
+
 ## Provided Code
 
 ### REST

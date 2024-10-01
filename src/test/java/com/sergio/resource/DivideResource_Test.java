@@ -11,14 +11,13 @@ import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.provider.ArgumentsSource;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.stream.Stream;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
 
 @QuarkusTest
-class DivideResourceTest {
+class DivideResource_Test {
     @Test
     void testDivide() {
         given()
