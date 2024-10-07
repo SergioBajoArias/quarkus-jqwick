@@ -10,6 +10,9 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 import static org.quicktheories.QuickTheory.qt;
 import static org.quicktheories.generators.SourceDSL.integers;
@@ -25,12 +28,17 @@ class DivideResourcePBT_Test {
         qt()
             .forAll(integers().all(), integers().all().assuming(i -> i != 0))
             .check((dividend, divisor) -> {
-                try {
-                    URL url = new URI(baseURL.toString() + "/divide/" + dividend + "/" + divisor).toURL();
-                    HttpURLConnection httpConnection = (HttpURLConnection) url.openConnection();
-                    httpConnection.connect();
-                    return httpConnection.getResponseCode() == HttpStatus.SC_OK;
-                } catch (URISyntaxException | IOException e) {
+                try (HttpClient client = HttpClient.newBuilder().build()) {
+
+                    HttpRequest request = HttpRequest.newBuilder()
+                            .uri(new URI(baseURL.toString() + "/divide/" + dividend + "/" + divisor))
+                            .GET()
+                            .build();
+
+                    HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
+
+                    return response.statusCode() == HttpStatus.SC_OK;
+                } catch (URISyntaxException | InterruptedException | IOException e) {
                     throw new RuntimeException(e);
                 }
             });
