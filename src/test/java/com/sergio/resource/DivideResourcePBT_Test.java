@@ -3,6 +3,7 @@ package com.sergio.resource;
 import io.quarkus.test.common.http.TestHTTPResource;
 import io.quarkus.test.junit.QuarkusTest;
 import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -27,7 +28,7 @@ class DivideResourcePBT_Test {
     void testDivide() {
         qt()
             .forAll(integers().all(), integers().all().assuming(i -> i != 0))
-            .check((dividend, divisor) -> {
+            .checkAssert((dividend, divisor) -> {
                 try (HttpClient client = HttpClient.newBuilder().build()) {
 
                     HttpRequest request = HttpRequest.newBuilder()
@@ -37,7 +38,7 @@ class DivideResourcePBT_Test {
 
                     HttpResponse<Void> response = client.send(request, HttpResponse.BodyHandlers.discarding());
 
-                    return response.statusCode() == HttpStatus.SC_OK;
+                    Assertions.assertEquals(HttpStatus.SC_OK, response.statusCode());
                 } catch (URISyntaxException | InterruptedException | IOException e) {
                     throw new RuntimeException(e);
                 }
