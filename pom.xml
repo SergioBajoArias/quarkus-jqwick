@@ -17,7 +17,7 @@
         <surefire-plugin.version>3.3.1</surefire-plugin.version>
         <jqwick.version>1.9.0</jqwick.version>
         <quicktheories.version>0.26</quicktheories.version>
-        <lombok.version>1.18.34</lombok.version>
+        <lombok.version>1.18.36</lombok.version>
     </properties>
 
     <dependencyManagement>
